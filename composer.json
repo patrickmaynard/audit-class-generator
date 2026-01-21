@@ -1,0 +1,30 @@
+{
+    "name": "patrick-maynard/audit-class-generator",
+    "type": "library",
+    "description": "A simple tool that allows developers to see which Twig templates are being used to generate a page",
+    "keywords": ["twig", "html", "debugging"],
+    "homepage": "http://home.patrickmaynard.com",
+    "license": "MIT",
+    "minimum-stability": "dev",
+    "authors": [
+        {
+            "name": "Patrick Maynard",
+            "email": "patrick.maynard@markenfilm-space.de",
+            "homepage": "http://home.patrickmaynard.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=7.4",
+        "twig/twig": "*"
+    },
+    "require-dev": {
+        "symfony/phpunit-bridge": "^4.4.9|^5.0.9|^6.0"
+    },
+    "autoload": {
+        "psr-4" : { "PatrickMaynard\\AuditClassGenerator\\" : "" },
+        "exclude-from-classmap": [
+            "/Tests/"
+        ]
+    }
+}

@@ -1,0 +1,81 @@
+<?php
+
+namespace PatrickMaynard\AuditClassGenerator;
+
+class Applier
+{
+    public function getDirContents($dir){
+        $results = array();
+        $files = scandir($dir);
+
+            foreach($files as $key => $value){
+                    if(!is_dir($dir. DIRECTORY_SEPARATOR .$value)){
+                        $results[] = $dir. DIRECTORY_SEPARATOR . $value;
+                    } else if(
+                        is_dir($dir. DIRECTORY_SEPARATOR .$value) &&
+                        !str_contains($value, '..') &&
+                        $value !== '.'
+                    ) {
+                        $results[] = $value;
+                        $results = array_merge($results, $this->getDirContents($dir. DIRECTORY_SEPARATOR .$value));
+                    }
+            }
+            return $results;
+
+    }
+
+    //TODO: Allow blade as well.
+    public function filterAllFilesForTwigExtension()
+    {
+        $directoryToParse = getcwd() . '..' . DIRECTORY_SEPARATOR . ' .. ';
+        echo PHP_EOL . 'We will be looking recursively in ' . $directoryToParse . ' for Twig files .. ' . PHP_EOL;
+        $files = $this->getDirContents($directoryToParse);
+        $output = [];
+        foreach ($files as $file) {
+            if (str_ends_with($file, '.html.twig')) {
+                $output[] = $file;
+            }
+        }
+        return $output;
+    }
+
+
+    function applyAllAuditTags()
+    {
+        //First, we need to be on a safe git branch, since this set of changes will mess with lots of files
+        exec('git checkout -b temporary-template-audit-branch-remove-me-soon');
+
+        echo PHP_EOL;
+        echo "Temporary git branch created. Iterating through templates ... ";
+        echo PHP_EOL;
+
+        $files = $this->filterAllFilesForTwigExtension();
+
+        foreach ($files as $index => $file) {
+            $contents = file_get_contents($file);
+            preg_match_all('/class="[^"]+"/', $contents, $matches);
+            foreach ($matches as $index => $match) {
+                if ( $index = 0 ) {
+                    continue;
+                }
+
+                if (is_array($match)) {
+                    foreach ($match as $matchingString) {
+                        $hash = md5(rand(0,1000000000) . "This will provide a nice, long, randomish string.");
+                        $shorterFingerprint = 'audit_' . substr($hash, 0, 6);
+                        $withSpace = ' ' . $shorterFingerprint . ' ';
+
+                        //Now just do a simple string replacement
+                        $contents = str_replace(
+                            $matchingString, substr($matchingString, 0, -1) . $withSpace . '"', $contents
+                        );
+                    }
+                }
+
+            }
+            file_put_contents($file, $contents);
+        }
+        echo "Done!";
+        echo PHP_EOL;
+    }
+}
