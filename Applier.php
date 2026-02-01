@@ -40,7 +40,7 @@ class Applier
     }
 
 
-    function applyAllAuditTags()
+    public function applyAllAuditTags()
     {
         //First, we need to be on a safe git branch, since this set of changes will mess with lots of files
         exec('git checkout -b temporary-template-audit-branch-remove-me-soon');
