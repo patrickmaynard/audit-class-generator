@@ -37,8 +37,9 @@ vendor/patrick-maynard/audit-class-generator/apply.php
 
 Then view the source of the page you want to debug in a browser. 
 
-You'll see that any tag that already had a "class" attribute now has a unique 
-class that looks something like `audit_34f39d` or such appended to the class list.
+You'll see that any tag that already had a "class" attribute now has a unique,  
+pseudorandom class that looks something like `audit_34f39d` or such appended 
+to the class list.
 
 Just grep for that audit class, and you'll find the Twig template you want in a jiffy. 
 
