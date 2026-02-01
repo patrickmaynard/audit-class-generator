@@ -4,7 +4,7 @@ Todo items
 Here are some todo items for this project:
 
 * x Push this to a new GitHub repository
-* Do any tagging necessary to get this onto packagist
+* x Do any tagging necessary to get this onto packagist
 * Make a clone of the Tag Monk project and remove the .git folder
 * Do a git init to set up the test project as its own safe repository locally
 * Do a composer require for the auditing library
