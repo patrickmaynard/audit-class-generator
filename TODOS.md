@@ -10,4 +10,9 @@ Here are some todo items for this project:
 * Do a composer require for the auditing library
 * Test out the process of running the applier and viewing browser output
 * Iterate as necessary to get everything working as it should be
+* Triple-check that the tool is checking out a new git branch when running,
+  and that it fails loudly if this is not possible because of open changes  
+* Test the whole workflow again 
 * Publicize this via the Twig stack trace dumper readme and vice-versa
+* Publicize it a little more via a burner Reddit account on the PHP Reddit forum
+* Add supoort for Blade templates and publicize that 
