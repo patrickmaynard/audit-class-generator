@@ -1,7 +1,7 @@
 Audit class generator
 ================
 
-This simple package add pseudorandomized audit tags to your Twig html class definitions.
+This simple package adds pseudorandomized audit tags to your Twig html class definitions.
 
 This can be useful if you don't have traditional debugging tools available. 
 
