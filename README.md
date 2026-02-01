@@ -11,6 +11,10 @@ you can quickly determine exactly which Twig template the html element came from
 That can save significant debugging time, since you don't have to guess at which Twig
 template to modify for a given task.  
 
+In other words, if you can view source in a browser, you can now grep definitively 
+for any HTML tag that already has a "class" attribute, finding exactly which Twig 
+template that DOM element came from. Pretty neat!  
+
 ## Installation
 
 To install this tool as a dev dependency:
