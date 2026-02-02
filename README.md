@@ -13,7 +13,7 @@ template to modify for a given task.
 
 In other words, if you can view source in a browser, you can now grep definitively 
 for any HTML tag that already has a "class" attribute, finding exactly which Twig 
-template that DOM element came from. Pretty neat!  
+template generated that DOM element. Pretty neat!  
 
 ## Installation
 
