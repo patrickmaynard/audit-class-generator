@@ -5,7 +5,7 @@ This simple package adds pseudorandomized audit tags to your Twig html class def
 
 This can be useful if you don't have traditional debugging tools available. 
 
-By seeing a short, pseudorandom audit tag among the classes applied to a html element, 
+By seeing a short, pseudorandom audit tag among the classes applied to an html element, 
 you can quickly determine exactly which Twig template the html element came from. 
 
 That can save significant debugging time, since you don't have to guess at which Twig
