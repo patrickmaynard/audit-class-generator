@@ -16,11 +16,3 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 # Arbeitsverzeichnis
 WORKDIR /app
-
-# Da dies eine Bibliothek ist, kopieren wir standardmäßig nichts, 
-# sondern nutzen Volumes für die Entwicklung.
-# Wenn man das Image standalone nutzen möchte:
-# COPY . /app
-# RUN composer install
-
-#CMD ["php", "-a"]
