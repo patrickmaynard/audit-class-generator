@@ -11,7 +11,8 @@ Here are some todo items for this project:
 * Test out the process of running the applier and viewing browser output
 * Iterate as necessary to get everything working as it should be
 * Per Steffen Grahl's good advice, use a strategy pattern and a config flag
-  to allow users to specify whether we use regex or the php 8.4 html 5 parser 
+  to allow users to specify whether we use regex or the php 8.4 html 5 parser
+* Test some more to make sure everything is still working 
 * Triple-check that the tool is checking out a new git branch when running,
   and that it fails loudly if this is not possible because of open changes  
 * Test the whole workflow again 
