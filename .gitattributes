@@ -1,0 +1,6 @@
+docker/ export-ignore
+Tests/ export-ignore
+README.md export-ignore
+TODOS.md export-ignore
+phpunit.xml.dist export-ignore
+Makefile export-ignore
