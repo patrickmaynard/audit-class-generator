@@ -5,13 +5,13 @@ This simple package adds pseudorandomized audit tags to your Twig html class def
 
 This can be useful if you don't have traditional debugging tools available. 
 
-By seeing a short, pseudorandom audit tag among the classes applied to an html element, 
+By seeing a short, pseudorandom audit tag among the classes applied to a html element, 
 you can quickly determine exactly which Twig template the html element came from. 
 
 That can save significant debugging time, since you don't have to guess at which Twig
 template to modify for a given task.  
 
-In other words, if you can view source in a browser, you can now grep definitively 
+In other words, if you can view the source in a browser, you can now grep definitively 
 for any HTML tag that already has a "class" attribute, finding exactly which Twig 
 template generated that DOM element. Pretty neat!  
 
@@ -27,19 +27,16 @@ Installing this in a production environment is not recommended.
 
 ## Usage
 
-One the tool has been installed, you can use the following command to open a new
-git branch and apply the temporary audit classes to any Twig html elements that 
-already have a "class" attribute defined. 
+Once the tool has been installed, you can run it directly from Composer’s `vendor/bin`
 
-```
-vendor/patrick-maynard/audit-class-generator/apply.php
+```bash
+vendor/bin/audit-class-generator
 ```
 
-Then view the source of the page you want to debug in a browser. 
+This will open a new git branch and apply temporary audit classes to any Twig HTML elements that already have a "class" attribute defined.
 
-You'll see that any tag that already had a "class" attribute now has a unique,  
-pseudorandom class that looks something like `audit_34f39d` or such appended 
-to the class list.
+Then view the source of the page you want to debug in a browser. You'll see that any tag that already had a "class" attribute now has a unique, pseudorandom class like `audit_34f39d` appended to the class list.
+
 
 Just grep for that audit class, and you'll find the Twig template you want in a jiffy. 
 
