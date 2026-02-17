@@ -24,9 +24,13 @@
         "symfony/phpunit-bridge": "^4.4.9|^5.0.9|^6.0"
     },
     "autoload": {
-        "psr-4" : { "PatrickMaynard\\AuditClassGenerator\\" : "src/" },
-        "exclude-from-classmap": [
-            "/Tests/"
-        ]
+        "psr-4": {
+            "PatrickMaynard\\AuditClassGenerator\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "PatrickMaynard\\AuditClassGenerator\\Tests\\": "Tests/"
+        }
     }
 }

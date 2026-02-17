@@ -2,7 +2,7 @@
 
 namespace PatrickMaynard\AuditClassGenerator\Tests;
 
-use PatrickMaynard\AuditClassGenerator\src\Applier;
+use PatrickMaynard\AuditClassGenerator\Applier;
 use PHPUnit\Framework\TestCase;
 
 class InstantiationTest extends TestCase
