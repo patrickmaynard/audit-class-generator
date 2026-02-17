@@ -1,6 +1,7 @@
 {
     "name": "patrick-maynard/audit-class-generator",
     "type": "library",
+    "bin": ["bin/audit-class-generator"],
     "description": "A simple tool that allows developers to see which Twig templates are being used to generate a page",
     "keywords": ["twig", "html", "debugging"],
     "homepage": "http://home.patrickmaynard.com",
