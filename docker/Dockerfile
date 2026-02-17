@@ -1,18 +1,28 @@
 FROM php:7.4-cli-alpine
 
-# System-Abhängigkeiten für Composer und PHP-Extensions
+# Build Dependencies für PECL
 RUN apk add --no-cache \
     git \
     unzip \
     zip \
-    libzip-dev \
-    bash
+    bash \
+    autoconf \
+    gcc \
+    g++ \
+    make \
+    pkgconf
 
-# PHP-Extensions installieren
-RUN docker-php-ext-install zip
+# Composer
+COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
-# Composer installieren
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+# PECL Channel Update
+RUN pecl channel-update pecl.php.net
 
-# Arbeitsverzeichnis
+# Xdebug kompatible Version für PHP 7.4
+RUN pecl install xdebug-3.1.6 \
+    && docker-php-ext-enable xdebug
+
+# Default aus
+ENV XDEBUG_MODE=off
+
 WORKDIR /app

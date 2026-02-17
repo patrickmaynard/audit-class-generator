@@ -1,9 +1,10 @@
 # Variablen
 DOCKER_COMPOSE_FILE := docker/docker-compose.yml
-PHPUNIT=docker compose -f $(DOCKER_COMPOSE_FILE) run --rm app ./vendor/bin/phpunit
-COMPOSER=docker compose -f $(DOCKER_COMPOSE_FILE) run --rm app composer
-TEST_DIR=tests
-COVERAGE_DIR=coverage
+DOCKER_RUN = docker compose -f $(DOCKER_COMPOSE_FILE) run --rm
+PHPUNIT = ./vendor/bin/phpunit
+COMPOSER = $(DOCKER_RUN) app composer
+TEST_DIR = tests
+COVERAGE_DIR = coverage
 
 
 # ----------------------------------------
@@ -15,12 +16,12 @@ help:
 	@echo "Verfügbare Targets:"
 	@echo "  install       - Baut den Container, installiert Dependencies, legt notwendige Ordner an"
 	@echo "  uninstall     - Löscht alle generierten Ordner und Container (wie neu)"
-	@echo "  test          - Führt alle Tests aus"
-	@echo "  test-coverage - Führt alle Tests mit HTML-Coverage aus"
-	@echo "  test-select   - Führt gezielt bestimmte Tests aus (Option TEST=Pfad/zum/Test)"
+	@echo "  test          - Führt alle Tests aus (ohne Xdebug)"
+	@echo "  test-coverage - Führt alle Tests mit HTML-Coverage aus (mit Xdebug)"
+	@echo "  test-select   - Führt gezielt bestimmte Tests aus (Option GROUP=groupname)"
 
 # ----------------------------------------
-# Install: Container bauen, Dependencies installieren, Ordner anlegen
+# Install
 .PHONY: install
 install:
 	docker compose -f $(DOCKER_COMPOSE_FILE) build --no-cache
@@ -29,7 +30,7 @@ install:
 	mkdir -p $(TEST_DIR)
 
 # ----------------------------------------
-# Clean → Uninstall: alles entfernen wie vorher
+# Clean → Uninstall
 .PHONY: uninstall
 uninstall:
 	docker compose -f $(DOCKER_COMPOSE_FILE) down -v --remove-orphans
@@ -38,22 +39,24 @@ uninstall:
 	@echo "Alles aufgeräumt. Container, Volumes und Dependencies entfernt."
 
 # ----------------------------------------
-# Alle Tests ausführen
+# Alle Tests ausführen (ohne Xdebug)
 .PHONY: test
 test:
-	$(PHPUNIT) --colors=always
+	$(DOCKER_RUN) -e XDEBUG_MODE=off app $(PHPUNIT) --colors=always
 
 # ----------------------------------------
-# Tests mit Coverage
+# Tests mit Coverage (mit Xdebug)
 .PHONY: test-coverage
 test-coverage:
-	$(PHPUNIT) --coverage-html $(COVERAGE_DIR) --colors=always
+	$(DOCKER_RUN) -e XDEBUG_MODE=coverage app \
+		$(PHPUNIT) --coverage-html $(COVERAGE_DIR) --colors=always
 
 # ----------------------------------------
-# Einzelne Tests / Gruppen ausführen: GROUP=groupname
+# Einzelne Testgruppen ausführen (ohne Xdebug)
 .PHONY: test-select
 test-select:
 ifndef GROUP
 	$(error Bitte GROUP=groupname angeben)
 endif
-	$(PHPUNIT) --group $(GROUP) --colors=always
+	$(DOCKER_RUN) -e XDEBUG_MODE=off app \
+		$(PHPUNIT) --group $(GROUP) --colors=always
