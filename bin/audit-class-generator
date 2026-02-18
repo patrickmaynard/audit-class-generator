@@ -3,6 +3,24 @@
 
 namespace PatrickMaynard\AuditClassGenerator;
 
-$applier = new Applier();
+$options = getopt('d:e:vh', ['directory:', 'extension:', 'verbose', 'help']);
+
+$helpText = <<<TEXT
+Usage: vendor/bin/audit-class-generator [options]
+
+Options:
+  -d, --directory  Verzeichnis zum Scannen (default: templates)
+  -e, --extension  Dateiendung filtern (default: .html.twig)
+  -v, --verbose    Ausführliche Ausgabe aktivieren
+  -h, --help       Diese Hilfe anzeigen
+TEXT;
+
+if (isset($options['h']) || isset($options['help'])) {
+    fwrite(STDOUT, $helpText . PHP_EOL . PHP_EOL . PHP_EOL);
+    exit(0);
+}
+
+$config = Config::create($options);
+$applier = new Applier($config);
 
 $applier->applyAllAuditTags();
