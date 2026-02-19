@@ -1,7 +1,9 @@
 #!/usr/bin/env php
-<?php
+<?php declare(strict_types=1);
 
-namespace PatrickMaynard\AuditClassGenerator;
+use PatrickMaynard\AuditClassGenerator\Applier;
+
+include $_composer_autoload_path ?? __DIR__ . '/../vendor/autoload.php';
 
 $options = getopt('d:e:vh', ['directory:', 'extension:', 'verbose', 'help']);
 
