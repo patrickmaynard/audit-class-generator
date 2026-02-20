@@ -22,6 +22,8 @@ if (isset($options['h']) || isset($options['help'])) {
     exit(0);
 }
 
+$config = Config::create($options);
+
 //First, we need to be on a safe git branch, since this set of changes will mess with lots of files
 exec('git checkout -b temporary-template-audit-branch-remove-me-soon');
 
@@ -29,7 +31,55 @@ echo PHP_EOL;
 echo "Temporary git branch created. Iterating through templates ... ";
 echo PHP_EOL;
 
-$config = Config::create($options);
 $applier = new Applier($config);
 
-$applier->applyAllAuditTags();
+$files = filterAllFilesForTwigExtension($config);
+
+foreach ($files as $index => $file) {
+    $contents = file_get_contents($file);
+
+    file_put_contents($file, $applier->applyAllAuditTags($contents));
+}
+
+echo "Done!";
+echo PHP_EOL;
+
+//TODO: Allow blade as well. Maybe solved with configuration
+function filterAllFilesForTwigExtension(Config $config): array
+{
+    $directoryToParse = getcwd() . DIRECTORY_SEPARATOR . $config->getDirectory();
+
+    echo PHP_EOL . 'We will be looking recursively in ' . $directoryToParse . ' for Twig files .. ' . PHP_EOL;
+
+    $files = getDirContents($directoryToParse);
+    $output = [];
+
+    foreach ($files as $file) {
+        if (str_ends_with($file, $config->getExtension())) {
+            $output[] = $file;
+        }
+    }
+
+    return $output;
+}
+
+function getDirContents($dir): array
+{
+    $results = [];
+    $files = scandir($dir);
+
+    foreach ($files as $key => $value) {
+        if (!is_dir($dir . DIRECTORY_SEPARATOR . $value)) {
+            $results[] = $dir . DIRECTORY_SEPARATOR . $value;
+        } elseif (
+            is_dir($dir . DIRECTORY_SEPARATOR . $value)
+            && !str_contains($value, '..')
+            && $value !== '.'
+        ) {
+            $results[] = $value;
+            $results = array_merge($results, getDirContents($dir . DIRECTORY_SEPARATOR . $value));
+        }
+    }
+
+    return $results;
+}
