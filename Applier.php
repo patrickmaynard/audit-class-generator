@@ -32,7 +32,6 @@ class Applier
                 }
 
                 if (is_array($match)) {
-
                     foreach ($match as $matchingString) {
                         $hash = md5(rand(0, 1000000000) . "This will provide a nice, long, randomish string.");
                         $shorterFingerprint = 'audit_' . substr($hash, 0, 6);
@@ -58,7 +57,7 @@ class Applier
     //TODO: Allow blade as well. Maybe solved with configuration
     private function filterAllFilesForTwigExtension(): array
     {
-        $directoryToParse = getcwd() . DIRECTORY_SEPARATOR  . $this->config->getDirectory();
+        $directoryToParse = getcwd() . DIRECTORY_SEPARATOR . $this->config->getDirectory();
 
         echo PHP_EOL . 'We will be looking recursively in ' . $directoryToParse . ' for Twig files .. ' . PHP_EOL;
 
