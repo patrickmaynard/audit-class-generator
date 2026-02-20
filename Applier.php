@@ -4,13 +4,6 @@ namespace PatrickMaynard\AuditClassGenerator;
 
 class Applier
 {
-    private Config $config;
-
-    public function __construct(Config $config)
-    {
-        $this->config = $config;
-    }
-
     public function applyAllAuditTags(string $contents): string
     {
         preg_match_all('/class="[^"]+"/', $contents, $matches);
