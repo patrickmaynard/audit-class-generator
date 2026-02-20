@@ -13,13 +13,6 @@ class Applier
 
     public function applyAllAuditTags(): void
     {
-        //First, we need to be on a safe git branch, since this set of changes will mess with lots of files
-        exec('git checkout -b temporary-template-audit-branch-remove-me-soon');
-
-        echo PHP_EOL;
-        echo "Temporary git branch created. Iterating through templates ... ";
-        echo PHP_EOL;
-
         $files = $this->filterAllFilesForTwigExtension();
 
         foreach ($files as $index => $file) {
