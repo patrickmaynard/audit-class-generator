@@ -6,7 +6,7 @@ class Applier
 {
     public function applyAllAuditTags(string $contents): string
     {
-        preg_match_all('/class="[^"]+"/', $contents, $matches);
+        preg_match_all('/class="[^"]*"/', $contents, $matches);
 
         foreach ($matches as $index => $match) {
             if ($index = 0) {
