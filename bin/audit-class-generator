@@ -1,6 +1,8 @@
 #!/usr/bin/env php
 <?php declare(strict_types=1);
 
+use PatrickMaynard\AuditClassGenerator\Application\BusinessLogic\Applier;
+use PatrickMaynard\AuditClassGenerator\Application\Config\Config;
 use PatrickMaynard\AuditClassGenerator\Infrastructure\FileSystem\DirectoryScanner;
 use PatrickMaynard\AuditClassGenerator\Infrastructure\FileSystem\ExtensionFilter;
 use PatrickMaynard\AuditClassGenerator\Infrastructure\FileSystem\FileIO;

@@ -1,6 +1,6 @@
 <?php
 
-namespace PatrickMaynard\AuditClassGenerator;
+namespace PatrickMaynard\AuditClassGenerator\Application\BusinessLogic;
 
 class Applier
 {
