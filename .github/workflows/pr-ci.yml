@@ -35,4 +35,4 @@ jobs:
 
       # 5️⃣ Run PHPUnit Tests
       - name: Run PHPUnit Tests
-        run: vendor/bin/phpunit --colors=always Tests/
+        run: vendor/bin/phpunit --colors=always tests/
