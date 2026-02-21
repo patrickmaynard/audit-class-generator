@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace PatrickMaynard\AuditClassGenerator\Infrastructure\FileSystem;
@@ -19,7 +20,7 @@ class FileIO
 
         $hasBom = str_starts_with($contents, "\xEF\xBB\xBF");
 
-        if($contents === '' || ($hasBom && strlen($contents) === 3)) {
+        if ($contents === '' || ($hasBom && strlen($contents) === 3)) {
             throw new EmptyFileException($path);
         }
 

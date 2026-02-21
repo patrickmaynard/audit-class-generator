@@ -1,25 +1,20 @@
 <?php
+
 declare(strict_types=1);
 
 namespace PatrickMaynard\AuditClassGenerator\Tests\Infrastructure\FileSystem;
 
+use org\bovigo\vfs\vfsStream;
 use org\bovigo\vfs\vfsStreamDirectory;
 use PatrickMaynard\AuditClassGenerator\Infrastructure\Exception\EmptyFileException;
 use PatrickMaynard\AuditClassGenerator\Infrastructure\Exception\FileDoesNotExistException;
 use PatrickMaynard\AuditClassGenerator\Infrastructure\Exception\FileNotWritableException;
-use PHPUnit\Framework\TestCase;
-use org\bovigo\vfs\vfsStream;
 use PatrickMaynard\AuditClassGenerator\Infrastructure\FileSystem\FileIO;
+use PHPUnit\Framework\TestCase;
 
 class FileIOTest extends TestCase
 {
     private vfsStreamDirectory $root;
-
-    protected function setUp(): void
-    {
-        // Erstelle ein virtuelles Dateisystem (vfsStream)
-        $this->root = vfsStream::setup('root'); // Wurzelverzeichnis erstellen
-    }
 
     public function testReadFileDoesNotExist(): void
     {
@@ -49,7 +44,9 @@ class FileIOTest extends TestCase
 
     public function testReadFileWithBomIsEmpty(): void
     {
-        vfsStream::newFile('emptyfile.txt')->withContent("\xEF\xBB\xBF")->at($this->root); // Leere Datei mit BOM erstellen
+        vfsStream::newFile('emptyfile.txt')
+            ->withContent("\xEF\xBB\xBF")
+            ->at($this->root); // Leere Datei mit BOM erstellen
 
         $fileIO = new FileIO();
         $this->expectException(\RuntimeException::class);
@@ -106,5 +103,11 @@ class FileIOTest extends TestCase
         $this->expectExceptionMessage('File not writable: ' . $path);
 
         $fileIO->write($path, 'Test content');
+    }
+
+    protected function setUp(): void
+    {
+        // Erstelle ein virtuelles Dateisystem (vfsStream)
+        $this->root = vfsStream::setup('root'); // Wurzelverzeichnis erstellen
     }
 }

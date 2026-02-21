@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace PatrickMaynard\AuditClassGenerator\Infrastructure\FileSystem;

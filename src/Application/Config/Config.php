@@ -1,9 +1,11 @@
 <?php
-declare(strict_types = 1);
+
+declare(strict_types=1);
 
 namespace PatrickMaynard\AuditClassGenerator\Application\Config;
 
-class Config {
+class Config
+{
     private string $directory;
     private string $extension;
     private bool $verbose;
