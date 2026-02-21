@@ -27,8 +27,11 @@ jobs:
       # 4️⃣ PSR-12 Code Style Check
       - name: Check PSR-12 Coding Standards
         run: |
-          composer global require "squizlabs/php_codesniffer=*"
-          phpcs --standard=PSR12 --extensions=php -n . bin/audit-class-generator
+          composer global require squizlabs/php_codesniffer
+          phpcs --standard=PSR12 --extensions=php -n \
+            bin/audit-class-generator \
+            src \
+            tests
 
       # 5️⃣ Run PHPUnit Tests
       - name: Run PHPUnit Tests
