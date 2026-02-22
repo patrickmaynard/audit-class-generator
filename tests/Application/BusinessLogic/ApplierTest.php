@@ -1,8 +1,8 @@
 <?php
 
-namespace PatrickMaynard\AuditClassGenerator\Tests;
+namespace PatrickMaynard\AuditClassGenerator\Tests\Application\BusinessLogic;
 
-use PatrickMaynard\AuditClassGenerator\Applier;
+use PatrickMaynard\AuditClassGenerator\Application\BusinessLogic\Applier;
 use PHPUnit\Framework\TestCase;
 
 class ApplierTest extends TestCase

@@ -1,9 +1,11 @@
 <?php
-declare(strict_types = 1);
 
-namespace PatrickMaynard\AuditClassGenerator;
+declare(strict_types=1);
 
-class Config {
+namespace PatrickMaynard\AuditClassGenerator\Application\Config;
+
+class Config
+{
     private string $directory;
     private string $extension;
     private bool $verbose;
@@ -22,7 +24,7 @@ class Config {
     {
         return new self(
             $options['directory'] ?? $options['d'] ?? 'templates',
-            $options['extension'] ?? $options['e'] ?? '.html.twig',
+            $options['extension'] ?? $options['e'] ?? 'html.twig',
             isset($options['v']) || isset($options['verbose'])
         );
     }

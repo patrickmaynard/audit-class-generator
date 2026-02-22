@@ -1,8 +1,13 @@
 #!/usr/bin/env php
-<?php declare(strict_types=1);
+<?php
 
-use PatrickMaynard\AuditClassGenerator\Applier;
-use PatrickMaynard\AuditClassGenerator\Config;
+declare(strict_types=1);
+
+use PatrickMaynard\AuditClassGenerator\Application\BusinessLogic\Applier;
+use PatrickMaynard\AuditClassGenerator\Application\Config\Config;
+use PatrickMaynard\AuditClassGenerator\Infrastructure\FileSystem\DirectoryScanner;
+use PatrickMaynard\AuditClassGenerator\Infrastructure\FileSystem\ExtensionFilter;
+use PatrickMaynard\AuditClassGenerator\Infrastructure\FileSystem\FileIO;
 
 include $_composer_autoload_path ?? __DIR__ . '/../vendor/autoload.php';
 
@@ -34,53 +39,19 @@ echo PHP_EOL;
 
 $applier = new Applier();
 
-$files = filterAllFilesForTwigExtension($config);
+$scanner = new DirectoryScanner();
+$filter = new ExtensionFilter($config->getExtension());
+$fileIO = new FileIO();
 
-foreach ($files as $index => $file) {
-    $contents = file_get_contents($file);
+foreach ($scanner->scan($config->getDirectory()) as $file) {
+    if (!$filter->matches($file)) {
+        continue;
+    }
 
-    file_put_contents($file, $applier->applyAllAuditTags($contents));
+    $content = $fileIO->read($file);
+    $processed = $applier->applyAllAuditTags($content);
+    $fileIO->write($file, $processed);
 }
 
 echo "Done!";
 echo PHP_EOL;
-
-//TODO: Allow blade as well. Maybe solved with configuration
-function filterAllFilesForTwigExtension(Config $config): array
-{
-    $directoryToParse = getcwd() . DIRECTORY_SEPARATOR . $config->getDirectory();
-
-    echo PHP_EOL . 'We will be looking recursively in ' . $directoryToParse . ' for Twig files .. ' . PHP_EOL;
-
-    $files = getDirContents($directoryToParse);
-    $output = [];
-
-    foreach ($files as $file) {
-        if (str_ends_with($file, $config->getExtension())) {
-            $output[] = $file;
-        }
-    }
-
-    return $output;
-}
-
-function getDirContents($dir): array
-{
-    $results = [];
-    $files = scandir($dir);
-
-    foreach ($files as $key => $value) {
-        if (!is_dir($dir . DIRECTORY_SEPARATOR . $value)) {
-            $results[] = $dir . DIRECTORY_SEPARATOR . $value;
-        } elseif (
-            is_dir($dir . DIRECTORY_SEPARATOR . $value)
-            && !str_contains($value, '..')
-            && $value !== '.'
-        ) {
-            $results[] = $value;
-            $results = array_merge($results, getDirContents($dir . DIRECTORY_SEPARATOR . $value));
-        }
-    }
-
-    return $results;
-}
