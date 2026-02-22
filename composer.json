@@ -20,12 +20,17 @@
         "twig/twig": "*"
     },
     "require-dev": {
-        "symfony/phpunit-bridge": "^4.4.9|^5.0.9|^6.0"
+        "phpunit/phpunit": "^9.6",
+        "mikey179/vfsstream": "^1.6"
     },
     "autoload": {
-        "psr-4" : { "PatrickMaynard\\AuditClassGenerator\\" : "" },
-        "exclude-from-classmap": [
-            "/Tests/"
-        ]
+        "psr-4" : {
+            "PatrickMaynard\\AuditClassGenerator\\" : "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4" : {
+            "PatrickMaynard\\AuditClassGenerator\\Tests\\" : "tests/"
+        }
     }
 }
