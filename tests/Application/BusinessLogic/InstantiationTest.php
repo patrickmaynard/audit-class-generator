@@ -1,6 +1,6 @@
 <?php
 
-namespace PatrickMaynard\AuditClassGenerator\Tests\Application\Config;
+namespace PatrickMaynard\AuditClassGenerator\Tests\Application\BusinessLogic;
 
 use PatrickMaynard\AuditClassGenerator\Application\BusinessLogic\Applier;
 use PHPUnit\Framework\TestCase;
