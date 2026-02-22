@@ -27,13 +27,15 @@ Installing this in a production environment is not recommended.
 
 ## Usage
 
+> ⚠️ **Warning:** Always create a new Git branch before running this tool. Otherwise, you may accidentally commit the generated audit classes to your production branch.
+
 Once the tool has been installed, you can run it directly from Composer’s `vendor/bin`
 
 ```bash
 vendor/bin/audit-class-generator
 ```
 
-This will open a new git branch and apply temporary audit classes to any Twig HTML elements that already have a "class" attribute defined.
+This will apply temporary audit classes to any Twig HTML elements that already have a "class" attribute defined.
 
 Then view the source of the page you want to debug in a browser. You'll see that any tag that already had a "class" attribute now has a unique, pseudorandom class like `audit_34f39d` appended to the class list.
 
