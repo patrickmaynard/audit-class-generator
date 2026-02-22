@@ -3,7 +3,7 @@
 namespace PatrickMaynard\AuditClassGenerator\Tests\Application\BusinessLogic;
 
 use PatrickMaynard\AuditClassGenerator\Application\BusinessLogic\Applier;
-use PatrickMaynard\AuditClassGenerator\AuditClassNameGenerator;
+use PatrickMaynard\AuditClassGenerator\Application\BusinessLogic\AuditClassNameGenerator;
 use PHPUnit\Framework\TestCase;
 
 class ApplierTest extends TestCase
