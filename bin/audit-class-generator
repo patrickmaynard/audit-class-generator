@@ -17,10 +17,11 @@ $helpText = <<<TEXT
 Usage: vendor/bin/audit-class-generator [options]
 
 Options:
-  -d, --directory  Verzeichnis zum Scannen (default: templates)
-  -e, --extension  Dateiendung filtern (default: .html.twig)
-  -v, --verbose    Ausführliche Ausgabe aktivieren
-  -h, --help       Diese Hilfe anzeigen
+  -d, --directory Directory to scan (default: templates)
+  -e, --extension Filter by file extension (default: .html.twig)
+  -v, --verbose   Enable verbose output
+  -h, --help      Show this help message
+
 TEXT;
 
 if (isset($options['h']) || isset($options['help'])) {
