@@ -17,12 +17,7 @@ class AuditClassNameGenerator
             ' %s_%s ',
             self::AUDIT_CLASS_PREFIX,
             substr(
-                md5(
-                    AuditClassNameGenerator . phprandom_int(
-                        0,
-                        self::UPPER_THRESHOLD_RANDOM_INT
-                    ) . self::RANDOM_STRING_SUFFIX
-                ),
+                md5(random_int(0, self::UPPER_THRESHOLD_RANDOM_INT) . self::RANDOM_STRING_SUFFIX),
                 0,
                 self::MAX_HASH_LENGTH
             )
