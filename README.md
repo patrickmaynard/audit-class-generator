@@ -1,12 +1,12 @@
 Audit class generator
 ================
 
-This simple package adds pseudorandomized audit tags to your Twig html class definitions.
+This simple package adds pseudorandomized audit tags to your Twig HTML class definitions.
 
 This can be useful if you don't have traditional debugging tools available. 
 
-By seeing a short, pseudorandom audit tag among the classes applied to an html element, 
-you can quickly determine exactly which Twig template the html element came from. 
+By seeing a short, pseudorandom audit tag among the classes applied to an HTML element, 
+you can quickly determine exactly which Twig template the HTML element came from. 
 
 That can save significant debugging time, since you don't have to guess at which Twig
 template to modify for a given task.  
@@ -27,7 +27,7 @@ Installing this in a production environment is not recommended.
 
 ## Usage
 
-Once the tool has been installed, you can run it directly from Composer’s `vendor/bin`
+Once the tool has been installed, you can run it directly from Composer’s `vendor/bin` with default configuration
 
 ```bash
 vendor/bin/audit-class-generator
@@ -37,7 +37,24 @@ This will open a new git branch and apply temporary audit classes to any Twig HT
 
 Then view the source of the page you want to debug in a browser. You'll see that any tag that already had a "class" attribute now has a unique, pseudorandom class like `audit_34f39d` appended to the class list.
 
+Just grep for that audit class, and you'll find the Twig template you want in a jiffy.
 
-Just grep for that audit class, and you'll find the Twig template you want in a jiffy. 
+### Configuration
+
+Change the template folder<br>
+default = `templates/`
+
+```bash
+vendor/bin/audit-class-generator --directory=path/to/templates
+```
+
+Change the file extension to filter for<br>
+default = `.html.twig`
+
+```bash
+vendor/bin/audit-class-generator --extension=.twig
+```
+
+----
 
 Happy debugging!
