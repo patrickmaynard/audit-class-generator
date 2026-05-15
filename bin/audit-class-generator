@@ -31,12 +31,12 @@ if (isset($options['h']) || isset($options['help'])) {
 
 $config = Config::create($options);
 
-//First, we need to be on a safe git branch, since this set of changes will mess with lots of files
+# First, we need to be on a safe git branch, since this set of changes will mess with lots of files
 
-echo
+echo ""
 echo "WARNING: This script will make temporary debugging changes to many files."
 echo "Please make sure you're on a temporary feature/debug branch."
-echo
+echo ""
 
 read -p "Are you on a safe temporary branch? (y/N): " response
 
