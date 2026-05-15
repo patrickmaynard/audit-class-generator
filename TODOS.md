@@ -12,8 +12,9 @@ Here are some todo items for this project:
 * x Iterate as necessary to get everything working as it should be
 * x Add a flag that allows the user to tag vendor templates as well 
   (already present -- users can just use the -d flag to specify the vendor dir)
-* x Add support for Blade templates (already done) 
-* ~~ Test some more to make sure everything is still working 
+* x Add support for Blade templates (already done)
+* ~~ Fix deprecation notices that pop up when running the test suite 
+* Test some more to make sure everything is still working 
 * Test the whole workflow again 
 * Publicize this via the Twig stack trace dumper readme and vice versa
 * Publicize it a little more via a burner Reddit account on the PHP Reddit forum
