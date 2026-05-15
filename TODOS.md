@@ -10,10 +10,10 @@ Here are some todo items for this project:
 * x Do a composer require for the auditing library
 * x Test out the process of running the applier and viewing browser output
 * x Iterate as necessary to get everything working as it should be
+* ~~ Add a flag that allows the user to tag vendor templates as well 
+  (which should be off by default)
 * Per Steffen Grahl's good advice, use a strategy pattern and a config flag
   to allow users to specify whether we use regex or the php 8.4 html 5 parser
-* Add a flag that allows the user to tag vendor templates as well 
-  (which should be off by default)
 * Test some more to make sure everything is still working 
 * Test the whole workflow again 
 * Publicize this via the Twig stack trace dumper readme and vice versa
