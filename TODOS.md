@@ -15,7 +15,9 @@ Here are some todo items for this project:
 * x Add support for Blade templates (already done)
 * x Fix deprecation notices that pop up when running the test suite
 *   (Actually, the deprecations were for a vendor class. All good here.)
-* ~~ Test some more to make sure everything is still working 
+* Add a command line flag that allows the user to remove all audit tags
+  (but clarify that it is still an experimental feature)
+* Test some more to make sure everything is still working 
 * Test the whole workflow again 
 * Publicize this via the Twig stack trace dumper readme and vice versa
 * Publicize it a little more via a burner Reddit account on the PHP Reddit forum
