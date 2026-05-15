@@ -32,11 +32,27 @@ if (isset($options['h']) || isset($options['help'])) {
 $config = Config::create($options);
 
 //First, we need to be on a safe git branch, since this set of changes will mess with lots of files
-exec('git checkout -b temporary-template-audit-branch-remove-me-soon');
+echo
+echo "WARNING: This script will make temporary debugging changes to many files."
+echo "Please make sure you're on a temporary feature/debug branch."
+echo
 
-echo PHP_EOL;
-echo "Temporary git branch created. Iterating through templates ... ";
-echo PHP_EOL;
+read -p "Are you on a safe temporary branch? (y/N): " response
+
+case "$response" in
+    [yY]|[yY][eE][sS])
+        echo
+        echo "Proceeding with application of audit tags in templates ..."
+        echo
+        ;;
+    *)
+        echo
+        echo "Exiting without making changes."
+        echo "Please switch to a safe branch and try again."
+        echo
+        exit 1
+        ;;
+esac
 
 $applier = new Applier();
 
