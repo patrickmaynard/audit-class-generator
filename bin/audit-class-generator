@@ -31,29 +31,29 @@ if (isset($options['h']) || isset($options['help'])) {
 
 $config = Config::create($options);
 
-# First, we need to be on a safe git branch, since this set of changes will mess with lots of files
 
-echo ""
-echo "WARNING: This script will make temporary debugging changes to many files."
-echo "Please make sure you're on a temporary feature/debug branch."
-echo ""
+echo PHP_EOL;
+echo "WARNING: This script will make temporary debugging changes to many files." . PHP_EOL;
+echo "Please make sure you're on a temporary feature/debug branch." . PHP_EOL;
+echo PHP_EOL;
 
-read -p "Are you on a safe temporary branch? (y/N): " response
+$response = readline("Are you on a safe temporary branch? (y/N): ");
 
-case "$response" in
-    [yY]|[yY][eE][sS])
-        echo
-        echo "Proceeding with application of audit tags in templates ..."
-        echo
-        ;;
-    *)
-        echo
-        echo "Exiting without making changes."
-        echo "Please switch to a safe branch and try again."
-        echo
-        exit 1
-        ;;
-esac
+$response = strtolower(trim($response));
+
+if ($response !== 'y' && $response !== 'yes') {
+    echo PHP_EOL;
+    echo "Exiting without making changes." . PHP_EOL;
+    echo "Please switch to a safe branch and try again." . PHP_EOL;
+    echo PHP_EOL;
+    exit(1);
+}
+
+echo PHP_EOL;
+echo "Proceeding with template audit..." . PHP_EOL;
+echo PHP_EOL;
+
+
 
 $applier = new Applier();
 
