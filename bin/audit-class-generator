@@ -61,6 +61,7 @@ $scanner = new DirectoryScanner();
 $filter = new ExtensionFilter($config->getExtension());
 $fileIO = new FileIO();
 
+$fileCount = 0;
 foreach ($scanner->scan($config->getDirectory()) as $file) {
     if (!$filter->matches($file)) {
         continue;
@@ -69,7 +70,8 @@ foreach ($scanner->scan($config->getDirectory()) as $file) {
     $content = $fileIO->read($file);
     $processed = $applier->applyAllAuditTags($content);
     $fileIO->write($file, $processed);
+    $fileCount++;
 }
 
-echo "Done!";
+echo "Done! $fileCount file processed.";
 echo PHP_EOL;
