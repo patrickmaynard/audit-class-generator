@@ -18,6 +18,7 @@ Here are some todo items for this project:
 * Add a command line flag that allows the user to remove all audit tags
   (but clarify that it is still an experimental feature.)
   (Steffen is taking this on ... )
+* Fix deprecation notice that shows when running test suite
 * Add output that shows a count of the number of files modified 
 * Add some more tests for the last couple features if needed. And run them. 
 * Test the whole workflow again 
