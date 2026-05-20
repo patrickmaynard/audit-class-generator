@@ -10,17 +10,17 @@ Here are some todo items for this project:
 * x Do a composer require for the auditing library
 * x Test out the process of running the applier and viewing browser output
 * x Iterate as necessary to get everything working as it should be
-* x Add a flag that allows the user to tag vendor templates as well 
+* x Add a flag that allows the user to tag vendor templates as well
   (already present -- users can just use the -d flag to specify the vendor dir)
 * x Add support for Blade templates (already done)
 * x Fix deprecation notices that pop up when running the test suite
 *   (Actually, the deprecations were for a vendor class. All good here.)
+* x Add output that shows a count of the number of files modified
 * Add a command line flag that allows the user to remove all audit tags
   (but clarify that it is still an experimental feature.)
   (Steffen is taking this on ... )
-* Add output that shows a count of the number of files modified 
-* Add some more tests for the last couple features if needed. And run them. 
-* Test the whole workflow again 
+* Add some more tests for the last couple features if needed. And run them.
+* Test the whole workflow again
 * Publicize this via the Twig stack trace dumper readme and vice versa
 * Publicize it a little more via a burner Reddit account on the PHP Reddit forum
 * Per Steffen Grahl's good advice, use a strategy pattern and a config flag
